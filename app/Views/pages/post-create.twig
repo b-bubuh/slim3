@@ -1,0 +1,11 @@
+{% extends 'layout.twig' %}
+{% import  'macros/form.twig' as form %}
+{% block content %}
+    <form action="/create-post" method="post">
+        {{ form.input('title', 'text', 'Titre de l\'aricle', { error : flash.errors.title, old : old.title }) }}
+        {{ form.textarea('description', 'Description', { error : flash.errors.description, old : old.description }) }}
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" name="submit" id="submit" value="Créer">
+        </div>
+    </form>
+{% endblock %}

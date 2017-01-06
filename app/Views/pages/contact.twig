@@ -1,0 +1,28 @@
+{% extends 'layout.twig' %}
+{% import  'macros/form.twig' as form %}
+
+{% block content %}
+
+    {% if(flash.success) %}
+        <div class="alert alert-success">
+            {{ flash.success }}
+        </div>
+    {% endif %}
+    {% if(flash.error) %}
+        <div class="alert alert-danger">
+            {{ flash.error }}
+        </div>
+    {% endif %}
+
+    <form action="{{ path_for('contact') }}" method="post">
+        {{ csrf() }}
+        {{ form.input('name', 'text', 'Votre nom', { error : flash.errors.name, old : old.name }) }}
+        {{ form.input('email', 'email', 'Votre email', { error : flash.errors.email, old : old.email }) }}
+        {{ form.input('date', 'date', 'Votre date de naissance', { error : flash.errors.date, old : old.date }) }}
+        {{ form.textarea('content', 'Contenu du message', { error : flash.errors.content, old : old.content }) }}
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" name="submit" id="submit">
+        </div>
+    </form>
+
+{% endblock %}

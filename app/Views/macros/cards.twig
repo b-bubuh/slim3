@@ -1,0 +1,7 @@
+{% macro postCard(post) %}
+    <div class="card card-block">
+        <p class="card-title">{{ post.name }}</p>
+        <p class="card-text">{{ post.description | truncate(90, true,'...') }}</p>
+        <a href="/post/{{ post.id }}">Read more...</a>
+    </div>
+{% endmacro %}

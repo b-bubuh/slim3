@@ -1,0 +1,26 @@
+{# Macro pour un input #}
+
+{% macro input(name, type, label, options) %}
+    <div class="form-group {% if(options.error) %} has-danger{% endif %}">
+        <label for="{{ name }}">{{ label }}</label>
+        <input type="{{ type }}" class="form-control {% if(options.error) %} form-control-danger{% endif %}" name="{{ name }}"
+               id="{{ name }}" value="{{ options.old }}">
+        {% if(options.error) %}
+            <div class="form-control-feedback">{{ options.error }}</div>
+        {% endif %}
+        {% if(options.text) %}
+            <small class="form-text text-muted">{{ options.text }}</small>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+{% macro textarea(name, label, options) %}
+    <div class="form-group {% if(options.error) %}has-danger{% endif %}">
+        <label for="content">{{ label }}</label>
+        <textarea class="form-control {% if(options.error) %} form-control-danger{% endif %}" name="{{ name }}" id="{{ name }}"
+                  style="height: 120px">{{ options.old }}</textarea>
+        {% if(options.error) %}
+            <div class="form-control-feedback">{{ options.error }}</div>
+        {% endif %}
+    </div>
+{% endmacro %}
